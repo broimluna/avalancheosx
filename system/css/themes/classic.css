@@ -11,7 +11,7 @@
     background: transparent;
 }
 
-a, h1, p, strong, span, #appicons a, #appsHtxt, #icons, #time, #date {
+a, h1, p, strong, span, ul, li, #appicons a, #appsHtxt, #icons, #time, #date {
     color: white !important;
 }
 .winmaximize > span {
