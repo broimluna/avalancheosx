@@ -148,15 +148,17 @@
 					<input type="color" id="colorpicker"><a>Choose your color</a></input>
 					<br>
 					<br>
-					<input type="checkbox" id="dmToggle">Enable Dark Mode</input>
-					<br>
-					<br>
+					<input type="checkbox" id="dmToggle" class="checkBox"><a id="dmToggle">Enable Dark Mode</a></input>
+					<br id="dmToggle">
+					<br id="dmToggle">
 					<button id="defaultColor" onclick="defaultColors()">Set colors to default</button>
 					<br>
 					<br>
 					<hr id="settingshr">
-					<h1 id="settingsh1" class="tskbrtab">Taskbar</h1>
-					<input type="checkbox" onclick="centeredApps()" id="centrdAppsChk"><a class="centrdAppsTxt">Set Apps button to center</a></input>
+					<h1 id="settingsh1" class="tskbrtab">Others</h1>
+					<input type="checkbox" onclick="centeredApps()" id="centrdAppsChk" class="checkBox"><a class="centrdAppsTxt">Set Apps button to center</a></input>
+					<br>
+					<input type="checkbox" onclick="showContained()" id="showContainedChk" class="checkBox"><a class="showContainedTxt">Hide Contained Apps</a></input>
 				    </div>
 				<div id="About" class="tab" style="display:none;text-align: center;overflow: hidden;">
 		
@@ -167,7 +169,7 @@
 					</div>
 		
 					<hr id="settingshr">
-					<a>Version X (Build: 6400)</a>
+					<a>Version X (Build: 7000.101)</a>
 					<br>		
 					<hr id="settingshr">
 					<a>broimluna - 2022</a>
@@ -183,7 +185,7 @@
 			
 			
 		
-		<div id="taskbar">
+		<div id="taskbar" ondrop="drop(event)" ondragover="allowDrop(event)">
 			<a id="appsPanel" onclick="appstoggle()"><img src='system/img/sys_logo.png' width='62' height='36'></a>
 			<a id="time"></a>
 			<a id="date"></a>
@@ -191,8 +193,8 @@
 		
 		<div id="icons">
 		  <center>
-			<a class="openWindow" data-id="0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>  
-			<a class="openWindow" data-id="1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
+			<a class="openWindow" data-id="0" id="app0i"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>  
+			<a class="openWindow" data-id="1" id="app1i"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
 			<a class="openWindow" data-id="3"><img border="0" alt="" src="system/img/icons/cal-32x32.png" width="32" height="32"><br>Calendar</a>
 			<a class="openWindow" data-id="5"><img border="0" alt="" src="system/img/icons/bronze-32x32.png" width="32" height="32"><br>Bronze<br>Browser</a>
 		  </center>      
@@ -203,13 +205,13 @@
 			<h1 id="appsHtxt">Apps</h1>
 				<div id="appicons">
 					<center>
-						<a class="openWindow" data-id="0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>
-						<a class="openWindow" data-id="1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
-						<a class="openWindow" data-id="2"><img border="0" alt="" src="system/img/icons/minesweeper-32x32.png" width="32" height="32"><br>Minesweeper</a>
+						<a class="openWindow" data-id="0" id="app0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>
+						<a class="openWindow" data-id="1" id="app1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
+						<a class="openWindow" data-id="2" id="app2"><img border="0" alt="" src="system/img/icons/minesweeper-32x32.png" width="32" height="32"><br>Minesweeper</a>
 						<a class="openWindow" data-id="3"><img border="0" alt="" src="system/img/icons/cal-32x32.png" width="32" height="32"><br>Calendar</a>
 						<a class="openWindow" data-id="4"><img border="0" alt="" src="system/img/icons/calc-32x32.png" width="32" height="32"><br>Calculator</a>
 						<a class="openWindow" data-id="5"><img border="0" alt="" src="system/img/icons/bronze-32x32.png" width="32" height="32"><br>Bronze Browser</a>
-						<a class="openWindow" data-id="6"><img border="0" alt="" src="system/img/icons/hyperos-32x32.png" width="32" height="32"><br>HyperOS</a>
+						<a class="openWindow" data-id="6" id="app6"><img border="0" alt="" src="system/img/icons/hyperos-32x32.png" width="32" height="32"><br>HyperOS</a>
 						<a class="openWindow" data-id="7"><img border="0" alt="" src="system/img/icons/settings-32x32.png" width="32" height="32"><br>Control Panel</a>
 
 
@@ -259,10 +261,12 @@
 	$('#abranding a').css('color', cpcolor);
 	$('button').css('border-color', cpcolor);
 	$('#button').css('border-color', cpcolor);
+	$('.checkBox').css('color', cpcolor);
 });
 
 let darkToggle = document.querySelector('#dmToggle');
 darkToggle.addEventListener('change', ()=> {
+
 	document.getElementById("time").classList.toggle("dark");
 	document.getElementById("date").classList.toggle("dark");
 	document.getElementById("taskbar").classList.toggle("dark");
@@ -272,5 +276,31 @@ darkToggle.addEventListener('change', ()=> {
 	document.getElementById("icons").classList.toggle("dark");
 
 });
+function showContained() {
+	var checkBox = document.getElementById("showContainedChk");
+	var app0 = document.querySelectorAll("#app0");
+	var app0i = document.querySelectorAll("#app0i");
+	var app1 = document.querySelectorAll("#app1");
+	var app1i = document.querySelectorAll("#app1i");
+	var app2 = document.querySelectorAll("#app2");
+	var app6 = document.querySelectorAll("#app6");
+
+	if (checkBox.checked == true){
+app0[0].style.setProperty("display", "none", "important");
+app1[0].style.setProperty("display", "none", "important");
+app0i[0].style.setProperty("display", "none", "important");
+app1i[0].style.setProperty("display", "none", "important");
+app2[0].style.setProperty("display", "none", "important");
+app6[0].style.setProperty("display", "none", "important");
+} else {
+	app0[0].style.setProperty("display", "block", "important");
+	app0i[0].style.setProperty("display", "block", "important");
+	app1[0].style.setProperty("display", "block", "important");
+	app1i[0].style.setProperty("display", "block", "important");
+	app2[0].style.setProperty("display", "block", "important");
+	app6[0].style.setProperty("display", "block", "important");
+}
+}
 </script>
 </html>
+

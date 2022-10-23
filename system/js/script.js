@@ -88,7 +88,6 @@ function startDate(){
 }
 function appstoggle() {
 	document.getElementById("appsmenu").classList.toggle("opened");
-	document.getElementById("appsPanel").classList.toggle("opened");
 }
 document.oncontextmenu = rightClick;
   
@@ -196,6 +195,8 @@ $(document).ready(function(){
 	$("#abranding a").css('color', '');
 	$("#watermark").css('color', '');
 	$('button').css('border-color', '');
+	$('.checkBox').css('color', '');
+	$('.wppicker').css('border-color', '');
   }
 
   function centeredApps() {
@@ -217,7 +218,9 @@ $(document).ready(function(){
 		appsmenu.style.margin = ""
 		appsmenu.style.left = ""
 	}
-  }
+ 
+}
+
 
 
 //THEMES COOKIES
