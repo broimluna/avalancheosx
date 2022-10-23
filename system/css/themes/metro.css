@@ -1,9 +1,9 @@
 @media screen and (max-width:769px) {
-    #themesrow, .themestext, .themeshr {
+    #themesrow, .themestext, .themeshr, #app6 {
         display: none !important;
     }
     #taskbar {
-        bottom: 5px;
+        bottom: 0px !important;
     }
   }
   

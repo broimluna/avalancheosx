@@ -14,6 +14,15 @@ abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
 table{border-collapse:collapse;border-spacing:0}
 hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
 input,select{vertical-align:middle}
+@media screen and (max-width:769px) {
+    #themesrow, .themestext, .themeshr, #app6 {
+        display: none !important;
+    }
+    #taskbar {
+        bottom: 0px !important;
+    }
+  }
+
 ::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
@@ -34,10 +43,12 @@ input,select{vertical-align:middle}
 	background-color: #555;
 }
 
+
+
 [type=checkbox] {
     width: 2rem;
     height: 2rem;
-    color: dodgerblue;
+    color: black;
     vertical-align: middle;
     -webkit-appearance: none;
     background: none;
@@ -126,6 +137,8 @@ input,select{vertical-align:middle}
     color: black;
 }*/
 
+
+
 #desktop {
 	font-family: Arial, Helvetica, sans-serif;
     position: fixed;
@@ -204,6 +217,7 @@ input,select{vertical-align:middle}
     display:block; 
     padding:0; 
     list-style:none;
+    transition: 0.2s;
 }
 #appicons a {
     border: solid 1px transparent;
@@ -214,6 +228,7 @@ input,select{vertical-align:middle}
     min-width:220px;
     cursor: pointer;
     text-align: left;
+    transition: 0.2s;
 }
 #appicons.dark {
     color: white !important;
@@ -270,7 +285,7 @@ input,select{vertical-align:middle}
     background: #CCC;
     font-size: 15px;
     border: 2px solid;
-    border-color: #ffffff;
+    border-color: var(--wppickercolor);;
     border-radius: 5px;
     height: 20px;
     margin: 2px 2px;
@@ -289,8 +304,8 @@ input,select{vertical-align:middle}
 
   .wppicker {
     color: transparent;
+    --wppickercolor: #ffffff;
   }
-
 
 
 .context-menu {
@@ -549,6 +564,10 @@ border-radius: 4px;
     background-color: #2e2e2e;
     transform: scale(1.14);
 }
+.taskbarPanel.activeTab.dark {
+    background-color: #ffffff;
+    transform: scale(1.14);
+}
 .taskbarPanel.activeTab:hover {
     background: rgba(0, 0, 0, 0.3);
 }
@@ -689,7 +708,6 @@ min-height: 335px;
 min-width: 358px;
 min-height: 365px;
 }
-
 
 
 /* Apps CSS */

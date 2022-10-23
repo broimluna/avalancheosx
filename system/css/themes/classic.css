@@ -39,10 +39,13 @@ a, h1, p, strong, span, #appicons a, #appsHtxt, #icons, #time, #date {
     display: block;
 }
 
-#centrdAppsChk, .centrdAppsTxt, .tskbrtab {
+#centrdAppsChk, .centrdAppsTxt, #showContainedChk, .showContainedTxt, .tskbrtab, #dmToggle, .drkmodetxt {
     display: none;
 }
 
 #desktop {
-    background: url("https://bing.biturl.top/?resolution=3840&format=image&index=0&mkt=en-CA") !important;
+    background: url("https://bing.biturl.top/?resolution=3840&format=image&index=0&mkt=en-CA");
+}
+#app0, #app1, #app0i, #app1i, #app2, #app6 {
+    display: block !important;
 }

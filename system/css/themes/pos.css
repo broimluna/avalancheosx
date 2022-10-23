@@ -268,7 +268,7 @@ z-index: 1000 !important;
     position: unset;
 }
 
-#centrdAppsChk, .centrdAppsTxt, .tskbrtab {
+#centrdAppsChk, .centrdAppsTxt, #showContainedChk, .showContainedTxt, .tskbrtab, #dmToggle {
     display: none;
 }
 #icons {
